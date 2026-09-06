@@ -1,0 +1,18 @@
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Dataset
+data/raw/
+data/processed/
+
+# Generated model files
+models/*.pt
+models/*.pth
+models/*.onnx
+
+# Environment variables
+.env
