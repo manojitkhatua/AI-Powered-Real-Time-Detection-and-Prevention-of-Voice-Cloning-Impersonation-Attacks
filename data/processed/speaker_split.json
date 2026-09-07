@@ -1,0 +1,599 @@
+{
+  "seed": 42,
+  "all_speakers": [
+    "biden",
+    "linus",
+    "margot",
+    "musk",
+    "obama",
+    "ryan",
+    "taylor",
+    "trump"
+  ],
+  "training_speakers": [
+    "biden",
+    "linus",
+    "margot",
+    "musk",
+    "obama",
+    "ryan"
+  ],
+  "validation_speakers": [
+    "taylor",
+    "trump"
+  ],
+  "train_files": [
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\biden-original.wav",
+      "filename": "biden-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\linus-original.wav",
+      "filename": "linus-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\margot-original.wav",
+      "filename": "margot-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\musk-original.wav",
+      "filename": "musk-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\obama-original.wav",
+      "filename": "obama-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\ryan-original.wav",
+      "filename": "ryan-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-linus.wav",
+      "filename": "biden-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-margot.wav",
+      "filename": "biden-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-musk.wav",
+      "filename": "biden-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-Obama.wav",
+      "filename": "biden-to-Obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-ryan.wav",
+      "filename": "biden-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-biden.wav",
+      "filename": "linus-to-biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-margot.wav",
+      "filename": "linus-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-musk.wav",
+      "filename": "linus-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-obama.wav",
+      "filename": "linus-to-obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-ryan.wav",
+      "filename": "linus-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-biden.wav",
+      "filename": "margot-to-biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-linus.wav",
+      "filename": "margot-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-musk.wav",
+      "filename": "margot-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-obama.wav",
+      "filename": "margot-to-obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-ryan.wav",
+      "filename": "margot-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-biden.wav",
+      "filename": "musk-to-biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-linus.wav",
+      "filename": "musk-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-margot.wav",
+      "filename": "musk-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-obama.wav",
+      "filename": "musk-to-obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-ryan.wav",
+      "filename": "musk-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\Obama-to-Biden.wav",
+      "filename": "Obama-to-Biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\obama-to-linus.wav",
+      "filename": "obama-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\obama-to-margot.wav",
+      "filename": "obama-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\obama-to-musk.wav",
+      "filename": "obama-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\obama-to-ryan.wav",
+      "filename": "obama-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-biden.wav",
+      "filename": "ryan-to-biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-linus.wav",
+      "filename": "ryan-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-margot.wav",
+      "filename": "ryan-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-musk.wav",
+      "filename": "ryan-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-obama.wav",
+      "filename": "ryan-to-obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "obama"
+      ]
+    }
+  ],
+  "validation_files": [
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\taylor-original.wav",
+      "filename": "taylor-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\REAL\\trump-original.wav",
+      "filename": "trump-original.wav",
+      "label": "REAL",
+      "speakers": [
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-trump.wav",
+      "filename": "taylor-to-trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-taylor.wav",
+      "filename": "trump-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "taylor"
+      ]
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-taylor.wav",
+      "filename": "biden-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\biden-to-Trump.wav",
+      "filename": "biden-to-Trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "biden",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-taylor.wav",
+      "filename": "linus-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\linus-to-trump.wav",
+      "filename": "linus-to-trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "linus",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-taylor.wav",
+      "filename": "margot-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\margot-to-trump.wav",
+      "filename": "margot-to-trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "margot",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-taylor.wav",
+      "filename": "musk-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\musk-to-trump.wav",
+      "filename": "musk-to-trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "musk",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\obama-to-taylor.wav",
+      "filename": "obama-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\Obama-to-Trump.wav",
+      "filename": "Obama-to-Trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "obama",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-taylor.wav",
+      "filename": "ryan-to-taylor.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "taylor"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\ryan-to-trump.wav",
+      "filename": "ryan-to-trump.wav",
+      "label": "FAKE",
+      "speakers": [
+        "ryan",
+        "trump"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-biden.wav",
+      "filename": "taylor-to-biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-linus.wav",
+      "filename": "taylor-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-margot.wav",
+      "filename": "taylor-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-musk.wav",
+      "filename": "taylor-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-obama.wav",
+      "filename": "taylor-to-obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\taylor-to-ryan.wav",
+      "filename": "taylor-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "taylor",
+        "ryan"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-Biden.wav",
+      "filename": "trump-to-Biden.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "biden"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-linus.wav",
+      "filename": "trump-to-linus.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "linus"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-margot.wav",
+      "filename": "trump-to-margot.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "margot"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-musk.wav",
+      "filename": "trump-to-musk.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "musk"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-Obama.wav",
+      "filename": "trump-to-Obama.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "obama"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Manojit Khatua\\AI ENGINEERING\\AI-Powered-Real-Time-Detection-and-Prevention-of-Voice-Cloning-Impersonation-Attacks\\data\\raw\\AUDIO\\FAKE\\trump-to-ryan.wav",
+      "filename": "trump-to-ryan.wav",
+      "label": "FAKE",
+      "speakers": [
+        "trump",
+        "ryan"
+      ]
+    }
+  ]
+}

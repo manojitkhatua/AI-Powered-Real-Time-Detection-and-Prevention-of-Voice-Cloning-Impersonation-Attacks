@@ -7,12 +7,23 @@ __pycache__/
 
 # Dataset
 data/raw/
-data/processed/
+
+# Generated processed data
+data/processed/*.npy
+data/processed/*.csv
+data/processed/*.pkl
+
+# Keep speaker split manifest
+!data/processed/speaker_split.json
 
 # Generated model files
 models/*.pt
 models/*.pth
 models/*.onnx
+
+# Old baseline scalers
+models/mfcc_scaler.joblib
+models/mfcc_scaler_baseline.joblib
 
 # Environment variables
 .env
