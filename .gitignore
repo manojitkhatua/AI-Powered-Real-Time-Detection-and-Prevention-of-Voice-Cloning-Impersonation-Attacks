@@ -27,3 +27,8 @@ models/mfcc_scaler_baseline.joblib
 
 # Environment variables
 .env
+
+# Local generated file lists
+data/audio_directory_list.txt
+data/audio_file_list.txt
+data/processed/.gitkeep
