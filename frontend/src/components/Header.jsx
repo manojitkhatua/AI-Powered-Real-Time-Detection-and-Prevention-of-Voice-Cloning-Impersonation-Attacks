@@ -1,100 +1,57 @@
 import { NavLink } from 'react-router-dom'
-import {
-  ShieldCheck,
-  LayoutDashboard,
-  History,
-  Settings,
-  Activity,
-} from 'lucide-react'
+import { ShieldCheck, LayoutDashboard, History, Settings } from 'lucide-react'
 
 const NAV_ITEMS = [
-  {
-    to: '/',
-    label: 'Dashboard',
-    icon: LayoutDashboard,
-    end: true,
-  },
-  {
-    to: '/history',
-    label: 'History',
-    icon: History,
-  },
-  {
-    to: '/settings',
-    label: 'Settings',
-    icon: Settings,
-  },
+  { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { to: '/history', label: 'History', icon: History },
+  { to: '/settings', label: 'Settings', icon: Settings },
 ]
 
 function Header({ sessionId }) {
   return (
-    <aside className="app-sidebar">
-      {/* Brand */}
-      <div className="sidebar-brand">
-        <div className="brand-icon">
-          <ShieldCheck size={22} strokeWidth={2} />
-        </div>
-
-        <div className="brand-text">
-          <span className="brand-name">EchoVerify</span>
-          <span className="brand-tag">AI Voice Security</span>
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="sidebar-nav" aria-label="Primary navigation">
-        <div className="sidebar-section-label">
-          PLATFORM
-        </div>
-
-        {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            className={({ isActive }) =>
-              `sidebar-nav-link${isActive ? ' sidebar-nav-link-active' : ''}`
-            }
-          >
-            <Icon size={19} strokeWidth={2} />
-            <span>{label}</span>
-          </NavLink>
-        ))}
-      </nav>
-
-      {/* Bottom status */}
-      <div className="sidebar-bottom">
-        <div className="sidebar-status">
-          <span className="status-dot" />
-          <div>
-            <span className="sidebar-status-title">
-              System Operational
-            </span>
-            <span className="sidebar-status-subtitle">
-              All services running
-            </span>
+    <header className="app-header">
+      <div className="app-header-inner">
+        <div className="brand">
+          <span className="brand-icon">
+            <ShieldCheck size={20} strokeWidth={2} />
+          </span>
+          <div className="brand-text">
+            <span className="brand-name">EchoVerify</span>
+            <span className="brand-tag">AI Voice Security</span>
           </div>
         </div>
 
-        {sessionId && (
-          <div className="sidebar-session">
-            <div className="sidebar-session-label">
-              ACTIVE SESSION
-            </div>
+        <nav className="app-nav" aria-label="Primary">
+          {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={({ isActive }) => `app-nav-link${isActive ? ' app-nav-link-active' : ''}`}
+            >
+              <Icon size={14} strokeWidth={2.2} />
+              {label}
+            </NavLink>
+          ))}
+        </nav>
 
-            <div className="sidebar-session-value">
-              <Activity size={14} />
-              {sessionId}
-            </div>
+        <div className="header-right">
+          <div className="system-status">
+            <span className="system-status-label">System status</span>
+            <span className="system-status-value">
+              <span className="status-pulse" aria-hidden="true" />
+              Operational
+            </span>
           </div>
-        )}
-
-        <div className="sidebar-footer">
-          <span>EchoVerify</span>
-          <span>AI Security Platform</span>
+          {sessionId && (
+            <div className="session-chip">
+              <span className="session-label">Session</span>
+              <span className="session-value">{sessionId}</span>
+            </div>
+          )}
         </div>
       </div>
-    </aside>
+    </header>
   )
 }
 
