@@ -19,8 +19,6 @@
  * @property {string} message                - Human-readable summary of the detection result.
  * @property {number} audio_window           - Length, in seconds, of the audio window analyzed.
  * @property {number} processing_latency     - End-to-end processing time in milliseconds.
- * @property {'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'} saliency_level - Intensity of anomalous regions
- *   in the spectro-temporal saliency map.
  * @property {boolean} anomaly_detected      - Whether an anomaly region was flagged for this window.
  */
 

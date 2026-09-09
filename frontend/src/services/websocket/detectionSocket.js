@@ -1,58 +1,42 @@
-/**
- * Reusable WebSocket service for the live detection stream.
- *
- * This does NOT auto-connect on import — the mock engine (see
- * src/services/mock/liveMockEngine.js, used by LiveDetectionContext)
- * remains the default data source until a backend is available. The
- * context calls connect() explicitly when Real Backend Mode is active.
- */
-
-const WS_URL = import.meta.env.VITE_WS_URL ?? ''
+import { WS_URL } from '../../config.js'
 
 export class DetectionSocket {
   constructor() {
     this.socket = null
-    this.listeners = {
-      message: [],
-      open: [],
-      close: [],
-      error: [],
+    this.listeners = { message: [], open: [], close: [], error: [] }
+  }
+
+  connect(sessionId) {
+    if (!sessionId) {
+      this._emit('error', new Error('A session ID is required for WebSocket connection'))
+      return
+    }
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) return
+
+    const base = WS_URL || `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}`
+    const url = `${base}/ws/${encodeURIComponent(sessionId)}`
+    try {
+      this.socket = new WebSocket(url)
+      this.socket.binaryType = 'arraybuffer'
+      this.socket.addEventListener('open', (event) => {
+        this._emit('open', event)
+        this.send({ type: 'start' })
+      })
+      this.socket.addEventListener('close', (event) => this._emit('close', event))
+      this.socket.addEventListener('error', (event) => this._emit('error', event))
+      this.socket.addEventListener('message', (event) => {
+        try {
+          const payload = JSON.parse(event.data)
+          this._emit('message', payload)
+        } catch (error) {
+          this._emit('error', error)
+        }
+      })
+    } catch (error) {
+      this._emit('error', error)
     }
   }
 
-  /**
-   * Open the WebSocket connection. Safe to call once; subsequent calls
-   * while already connected are ignored.
-   */
-  connect() {
-    if (!WS_URL) {
-      this._emit('error', new Error('VITE_WS_URL is not configured'))
-      return
-    }
-
-    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      return
-    }
-
-    this.socket = new WebSocket(WS_URL)
-
-    this.socket.addEventListener('open', (event) => this._emit('open', event))
-    this.socket.addEventListener('close', (event) => this._emit('close', event))
-    this.socket.addEventListener('error', (event) => this._emit('error', event))
-    this.socket.addEventListener('message', (event) => {
-      try {
-        const payload = JSON.parse(event.data)
-        this._emit('message', payload)
-      } catch (error) {
-        this._emit('error', error)
-      }
-    })
-  }
-
-  /**
-   * Register a listener for 'message' | 'open' | 'close' | 'error'.
-   * Returns an unsubscribe function.
-   */
   on(eventName, callback) {
     if (!this.listeners[eventName]) return () => {}
     this.listeners[eventName].push(callback)
@@ -62,9 +46,11 @@ export class DetectionSocket {
   }
 
   send(payload) {
-    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(JSON.stringify(payload))
-    }
+    if (this.socket?.readyState === WebSocket.OPEN) this.socket.send(JSON.stringify(payload))
+  }
+
+  sendBinary(data) {
+    if (this.socket?.readyState === WebSocket.OPEN) this.socket.send(data)
   }
 
   close() {
@@ -79,7 +65,5 @@ export class DetectionSocket {
   }
 }
 
-// Shared singleton instance — components can import this directly, or
-// construct their own DetectionSocket() for isolated usage/testing.
 const detectionSocket = new DetectionSocket()
 export default detectionSocket

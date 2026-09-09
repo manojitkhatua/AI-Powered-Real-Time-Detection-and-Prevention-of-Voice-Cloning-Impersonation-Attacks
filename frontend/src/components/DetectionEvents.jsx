@@ -31,9 +31,10 @@ function DetectionEvents({ detectionHistory = [] }) {
               {detectionHistory.map((event, i) => {
                 const isLatest = i === detectionHistory.length - 1
                 const riskClass = getRiskClass(event.risk_level)
+                const windowLabel = event.window_index != null ? `W${Number(event.window_index) + 1}` : 'Final'
                 return (
-                  <tr key={`${event.audio_window}-${i}`} className={isLatest ? 'events-row-latest' : ''}>
-                    <td data-label="Window">{event.audio_window}s</td>
+                  <tr key={`${event.audio_window ?? windowLabel}-${i}`} className={isLatest ? 'events-row-latest' : ''}>
+                    <td data-label="Window">{windowLabel}</td>
                     <td data-label="Voice status">{event.voice_status}</td>
                     <td data-label="Spoof probability">{Math.round(event.spoof_probability * 100)}%</td>
                     <td data-label="Risk score">{event.risk_score}</td>

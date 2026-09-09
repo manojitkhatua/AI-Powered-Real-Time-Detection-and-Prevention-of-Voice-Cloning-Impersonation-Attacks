@@ -1,7 +1,14 @@
 import { UserRound, CircleAlert, FileAudio } from 'lucide-react'
 
-function CallerPanel({ sessionId = 'CALL-001', mode = 'live', fileName }) {
+function CallerPanel({ sessionId = 'CALL-001', mode = 'live', fileName, riskLevel = 'LOW' }) {
   const isUpload = mode === 'upload'
+  const verificationLabel = riskLevel === 'CRITICAL'
+    ? 'Session blocked'
+    : riskLevel === 'HIGH'
+      ? 'Verification required'
+      : riskLevel === 'MEDIUM'
+        ? 'Verification recommended'
+        : 'Monitoring active'
 
   return (
     <section className="panel" aria-labelledby="caller-panel-title">
@@ -24,7 +31,7 @@ function CallerPanel({ sessionId = 'CALL-001', mode = 'live', fileName }) {
       <div className="caller-status">
         <CircleAlert size={15} strokeWidth={2.2} />
         <div>
-          <span className="caller-status-label">Verification required</span>
+          <span className="caller-status-label">{verificationLabel}</span>
           <p className="caller-status-desc">
             {isUpload
               ? 'Review the analysis result below before trusting this recording.'

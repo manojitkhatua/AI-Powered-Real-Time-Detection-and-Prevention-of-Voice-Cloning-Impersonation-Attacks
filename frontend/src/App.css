@@ -549,44 +549,67 @@
   cursor: not-allowed;
 }
 
-/* ==================== Saliency map ==================== */
+/* ==================== Temporal detection analysis ==================== */
 
-.saliency-map {
+.temporal-chart {
+  position: relative;
   display: flex;
   gap: 8px;
+  height: 138px;
+  padding: 8px 0 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-inset);
+  overflow: hidden;
 }
 
-.saliency-axis-y {
+.temporal-chart-grid {
+  width: 34px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0 0 7px 7px;
   font-size: 9px;
   font-family: var(--font-mono);
   color: var(--text-muted);
-  padding: 2px 0;
 }
 
-.saliency-grid {
+.temporal-bars {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(24, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  gap: 1.5px;
-  aspect-ratio: 24 / 10;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--bg-inset);
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 0 8px 7px 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 41px,
+    var(--border) 42px,
+    transparent 43px
+  );
 }
 
-.saliency-cell {
-  display: block;
+.temporal-bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  max-width: 8px;
+  border-radius: 2px 2px 0 0;
+  opacity: 0.9;
+  transition: height 0.25s ease, opacity 0.2s ease;
 }
 
-.saliency-axis-x {
+.temporal-bar:hover { opacity: 1; }
+.temporal-bar-low { background: var(--success); }
+.temporal-bar-medium { background: var(--warning); }
+.temporal-bar-high { background: var(--high); }
+.temporal-bar-critical { background: var(--critical); }
+
+.temporal-axis {
   display: flex;
   justify-content: space-between;
-  margin: 6px 0 0 24px;
+  margin-top: 6px;
+  padding-left: 42px;
   font-size: 9px;
   font-family: var(--font-mono);
   color: var(--text-muted);

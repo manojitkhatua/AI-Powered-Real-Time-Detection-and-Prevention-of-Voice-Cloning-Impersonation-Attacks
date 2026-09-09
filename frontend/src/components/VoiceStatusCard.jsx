@@ -19,7 +19,7 @@ function VoiceStatusCard({ detection }) {
     )
   }
 
-  const { voice_status, spoof_probability, risk_level, anomaly_detected, saliency_level } = detection
+  const { voice_status, spoof_probability, risk_level, anomaly_detected } = detection
   const riskClass = getRiskClass(risk_level)
   const spoofPercent = Math.round(spoof_probability * 100)
 
@@ -57,8 +57,8 @@ function VoiceStatusCard({ detection }) {
           </span>
         </div>
         <div className="mini-stat">
-          <span className="mini-stat-label">Saliency level</span>
-          <span className="mini-stat-value">{saliency_level}</span>
+          <span className="mini-stat-label">Detection basis</span>
+          <span className="mini-stat-value">MFCC + MLP</span>
         </div>
       </div>
     </section>

@@ -55,7 +55,6 @@ export function analyzeAudioFileMock(file) {
     message: MESSAGE_BY_LEVEL[riskLevel],
     audio_window: 1.2,
     processing_latency: processingLatencyMs,
-    saliency_level: riskLevel,
     anomaly_detected: riskLevel !== 'LOW',
     confidence: Number(confidence.toFixed(2)),
     duration_estimate: 4 + (seed % 40),

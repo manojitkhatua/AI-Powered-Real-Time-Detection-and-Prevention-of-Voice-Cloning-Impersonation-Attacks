@@ -5,7 +5,7 @@ import VoiceStatusCard from '../components/VoiceStatusCard.jsx'
 import RiskScoreCard from '../components/RiskScoreCard.jsx'
 import SecurityAction from '../components/SecurityAction.jsx'
 import RiskTimeline from '../components/RiskTimeline.jsx'
-import SaliencyMap from '../components/SaliencyMap.jsx'
+import TemporalDetectionAnalysis from '../components/TemporalDetectionAnalysis.jsx'
 import UltraShortAnalysis from '../components/UltraShortAnalysis.jsx'
 import DetectionEvents from '../components/DetectionEvents.jsx'
 import VerificationModal from '../components/VerificationModal.jsx'
@@ -49,7 +49,15 @@ function Dashboard() {
   }
 
   const handleUploadResult = (result) => {
-    setUploadResult(result)
+    // Normalize the REST response to the same shape used by the live stream.
+    // The REST endpoint returns aggregate values rather than per-window events.
+    setUploadResult({
+      ...result,
+      file_name: result.file_name ?? result.filename,
+      audio_window: Number(result.audio_window ?? 2),
+      processing_latency: Number(result.processing_latency ?? 0),
+      anomaly_detected: Number(result.spoof_probability ?? 0) >= 0.5,
+    })
   }
 
   return (
@@ -87,6 +95,7 @@ function Dashboard() {
                 sessionId={activeDetection.session_id}
                 mode={source}
                 fileName={activeDetection.file_name}
+                riskLevel={activeDetection.risk_level}
               />
               <VoiceStatusCard detection={activeDetection} />
             </div>
@@ -101,7 +110,7 @@ function Dashboard() {
             </div>
 
             <div className="grid grid-2col">
-              <SaliencyMap detection={activeDetection} />
+              <TemporalDetectionAnalysis detectionHistory={activeHistory} />
               <UltraShortAnalysis detection={activeDetection} />
             </div>
 

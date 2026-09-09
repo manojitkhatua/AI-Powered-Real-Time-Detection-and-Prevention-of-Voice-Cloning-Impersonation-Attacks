@@ -53,7 +53,6 @@ export function createLiveMockEngine({ sessionId = 'LIVE-SESSION', onEvent }) {
       message: MESSAGE_BY_LEVEL[riskLevel],
       audio_window: Number((windowIndex * 1.2).toFixed(1)),
       processing_latency: 60 + Math.round(Math.random() * 45),
-      saliency_level: riskLevel,
       anomaly_detected: riskLevel !== 'LOW' && Math.random() > 0.25,
     }
 

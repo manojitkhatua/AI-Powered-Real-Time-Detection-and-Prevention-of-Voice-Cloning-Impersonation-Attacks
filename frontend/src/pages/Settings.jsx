@@ -61,17 +61,16 @@ function Settings() {
         <div className="mini-stat-row">
           <div className="mini-stat">
             <span className="mini-stat-label">API base URL</span>
-            <span className="mini-stat-value settings-mono">{API_BASE_URL || 'Not configured'}</span>
+            <span className="mini-stat-value settings-mono">{API_BASE_URL || 'Same-origin /api proxy'}</span>
           </div>
           <div className="mini-stat">
             <span className="mini-stat-label">WebSocket URL</span>
-            <span className="mini-stat-value settings-mono">{WS_URL || 'Not configured'}</span>
+            <span className="mini-stat-value settings-mono">{WS_URL || 'Same-origin /ws proxy'}</span>
           </div>
         </div>
 
         <p className="panel-footnote">
-          Set <code>VITE_API_BASE_URL</code> and <code>VITE_WS_URL</code> in your <code>.env</code> file
-          (see <code>.env.example</code>) to point EchoVerify at a real backend. No code changes needed.
+          For local development, the Vite dev server proxies <code>/api</code> and <code>/ws</code> to FastAPI on <code>127.0.0.1:8000</code>. Optional Vite environment variables can override these defaults.
         </p>
       </section>
 

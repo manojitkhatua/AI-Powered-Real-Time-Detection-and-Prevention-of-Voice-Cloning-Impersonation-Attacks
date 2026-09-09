@@ -1,7 +1,7 @@
 import { AudioWaveform } from 'lucide-react'
 
-// Fixed waveform bar heights so the visualization is stable, not random
-// on every render — it represents a short analysis window, not live audio.
+// Fixed waveform bar heights keep the compact visual stable between renders.
+// This is an audio-activity illustration, not a model explanation map.
 const BAR_HEIGHTS = [22, 40, 30, 55, 70, 48, 62, 35, 50, 68, 44, 58, 30, 46, 60, 38, 52, 66, 42, 28, 36, 54, 32, 20]
 
 function UltraShortAnalysis({ detection }) {
@@ -16,7 +16,8 @@ function UltraShortAnalysis({ detection }) {
     )
   }
 
-  const { audio_window, processing_latency } = detection
+  const { audio_window = 2, processing_latency } = detection
+  const latencyLabel = Number(processing_latency) > 0 ? `${processing_latency} ms` : 'Live stream'
 
   return (
     <section className="panel" aria-labelledby="ultra-short-title">
@@ -41,21 +42,21 @@ function UltraShortAnalysis({ detection }) {
 
       <div className="mini-stat-row mini-stat-row-three">
         <div className="mini-stat">
-          <span className="mini-stat-label">Audio window</span>
+          <span className="mini-stat-label">Analysis window</span>
           <span className="mini-stat-value">{audio_window}s</span>
         </div>
         <div className="mini-stat">
-          <span className="mini-stat-label">Target range</span>
-          <span className="mini-stat-value">0.5–2.0s</span>
+          <span className="mini-stat-label">Window overlap</span>
+          <span className="mini-stat-value">1.0s</span>
         </div>
         <div className="mini-stat">
-          <span className="mini-stat-label">Latency</span>
-          <span className="mini-stat-value">{processing_latency} ms</span>
+          <span className="mini-stat-label">Processing</span>
+          <span className="mini-stat-value">{latencyLabel}</span>
         </div>
       </div>
 
       <p className="panel-footnote">
-        Detection operates on short audio windows to support early intervention.
+        Audio is evaluated in overlapping short windows so suspicious evidence can accumulate over time.
       </p>
     </section>
   )

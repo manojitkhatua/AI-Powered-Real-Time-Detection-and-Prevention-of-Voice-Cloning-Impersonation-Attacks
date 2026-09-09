@@ -2,7 +2,6 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { isMockMode } from '../config.js'
 import createLiveMockEngine from '../services/mock/liveMockEngine.js'
 import detectionSocket from '../services/websocket/detectionSocket.js'
-import detectionApi from '../services/api/detectionApi.js'
 import { getRecommendedAction, getRiskLabel } from '../services/riskPolicy.js'
 import { addHistoryEntry } from '../services/history.js'
 
@@ -17,8 +16,6 @@ import { addHistoryEntry } from '../services/history.js'
  * status: 'idle' | 'requesting-permission' | 'connecting' | 'live' | 'stopped' | 'error'
  */
 const LiveDetectionContext = createContext(null)
-
-const REST_CHUNK_INTERVAL_MS = 2500
 
 function buildSummary({ sessionId, detectionHistory, startedAt, stoppedAt }) {
   if (detectionHistory.length === 0) {
@@ -63,6 +60,9 @@ export function LiveDetectionProvider({ children }) {
 
   const mediaStreamRef = useRef(null)
   const recorderRef = useRef(null)
+  const audioContextRef = useRef(null)
+  const audioSourceRef = useRef(null)
+  const processorRef = useRef(null)
   const engineRef = useRef(null)
   const tickRef = useRef(null)
   const socketUnsubRef = useRef([])
@@ -156,47 +156,79 @@ export function LiveDetectionProvider({ children }) {
       engine.start()
       setStatus('live')
     } else {
-      // Real backend mode: try to open the results WebSocket, and stream
-      // captured audio chunks over REST as a fallback delivery path (see
-      // services/api/detectionApi.js). Both are placeholders for the
-      // backend team to wire up to real endpoints.
-      const offMessage = detectionSocket.on('message', handleEvent)
+      // Real backend: WebSocket endpoint is /ws/{session_id}. The backend
+      // expects raw PCM16 mono audio at 16 kHz, so MediaRecorder/WebM is not
+      // suitable here.
+      const offMessage = detectionSocket.on('message', (payload) => {
+        if (payload?.type === 'detection') {
+          handleEvent({
+            ...payload,
+            audio_window: Number(payload.window_index ?? 0) + 1,
+            processing_latency: 0,
+            anomaly_detected: Number(payload.spoof_probability ?? 0) >= 0.5,
+            message: payload.risk_level === 'CRITICAL'
+              ? 'Persistent synthetic voice indicators detected.'
+              : payload.risk_level === 'HIGH'
+                ? 'Synthetic voice indicators detected.'
+                : 'No significant synthetic voice indicators detected.',
+          })
+        }
+      })
       const offError = detectionSocket.on('error', () => {
-        handleFatalError('backend-unavailable', 'Live detection backend is unavailable right now. You can switch to Demo Mode in Settings to continue the demo.')
+        if (!stoppingRef.current) {
+          handleFatalError('backend-unavailable', 'Live detection backend is unavailable. Check that the FastAPI server is running on port 8000.')
+        }
       })
       const offClose = detectionSocket.on('close', () => {
         if (!stoppingRef.current) {
           handleFatalError('connection-lost', 'The live detection connection was lost.')
         }
       })
-      socketUnsubRef.current = [offMessage, offError, offClose]
-      detectionSocket.connect()
+      const offOpen = detectionSocket.on('open', () => {
+        // Socket sends the start message itself after opening.
+      })
+      socketUnsubRef.current = [offMessage, offError, offClose, offOpen]
+      detectionSocket.connect(newSessionId)
 
       try {
-        const MediaRecorderCtor = window.MediaRecorder
-        if (!MediaRecorderCtor) {
-          throw new Error('MediaRecorder is not supported in this browser')
-        }
-        const recorder = new MediaRecorderCtor(stream)
-        let consecutiveFailures = 0
-        recorder.ondataavailable = async (e) => {
-          if (!e.data || e.data.size === 0) return
-          const { data, error: reqError } = await detectionApi.sendAudioForDetection(e.data, newSessionId)
-          if (reqError) {
-            consecutiveFailures += 1
-            if (consecutiveFailures >= 3) {
-              handleFatalError('backend-unavailable', 'Live detection backend is unavailable right now. You can switch to Demo Mode in Settings to continue the demo.')
-            }
-            return
+        const AudioContextCtor = window.AudioContext || window.webkitAudioContext
+        if (!AudioContextCtor) throw new Error('Web Audio API is not supported in this browser')
+
+        const audioContext = new AudioContextCtor()
+        await audioContext.resume()
+        const sourceNode = audioContext.createMediaStreamSource(stream)
+        const processor = audioContext.createScriptProcessor(4096, 1, 1)
+
+        processor.onaudioprocess = (event) => {
+          if (stoppingRef.current) return
+          const input = event.inputBuffer.getChannelData(0)
+          const targetRate = 16000
+          const inputRate = audioContext.sampleRate
+          const ratio = inputRate / targetRate
+          const outputLength = Math.max(1, Math.floor(input.length / ratio))
+          const output = new Int16Array(outputLength)
+
+          for (let i = 0; i < outputLength; i += 1) {
+            const position = i * ratio
+            const index = Math.floor(position)
+            const next = Math.min(index + 1, input.length - 1)
+            const fraction = position - index
+            const sample = input[index] * (1 - fraction) + input[next] * fraction
+            const clamped = Math.max(-1, Math.min(1, sample))
+            output[i] = clamped < 0 ? clamped * 32768 : clamped * 32767
           }
-          consecutiveFailures = 0
-          if (data) handleEvent(data)
+
+          detectionSocket.sendBinary(output.buffer)
         }
-        recorderRef.current = recorder
-        recorder.start(REST_CHUNK_INTERVAL_MS)
+
+        sourceNode.connect(processor)
+        processor.connect(audioContext.destination)
+        audioContextRef.current = audioContext
+        audioSourceRef.current = sourceNode
+        processorRef.current = processor
         setStatus('live')
-      } catch {
-        handleFatalError('recorder-unsupported', 'This browser cannot capture microphone audio for live detection.')
+      } catch (err) {
+        handleFatalError('audio-capture-error', err?.message || 'Unable to capture microphone audio.')
         return
       }
     }
@@ -210,6 +242,7 @@ export function LiveDetectionProvider({ children }) {
     if (status !== 'live' && status !== 'connecting') return
     stoppingRef.current = true
 
+    detectionSocket.send({ type: 'stop' })
     cleanupEngine()
     cleanupMedia()
 
