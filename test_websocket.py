@@ -193,26 +193,14 @@ async def test_websocket():
         while True:
 
             try:
+                response = await asyncio.wait_for(websocket.recv(),timeout=1.0,)
 
-                response = await asyncio.wait_for(
-                    websocket.recv(),
-                    timeout=1.0,
-                )
+                result = json.loads(response)
 
-                result = json.loads(
-                    response
-                )
+                print("\nSERVER:")
 
                 print(
-                    "\nSERVER:"
-                )
-
-                print(
-                    json.dumps(
-                        result,
-                        indent=2,
-                    )
-                )
+                    json.dumps(result,indent=2,))
 
                 if result.get("type") == "final":
                     break
